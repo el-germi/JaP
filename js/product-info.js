@@ -127,24 +127,29 @@ function mostrarDatosDelProducto(productData) {
     let productSoldCount = document.getElementById("vendidos-producto");
     let productImages = document.getElementById("imagenes-producto");
 
-    productName.textContent = productData.name;
+    productName.innerHTML = `${productData.name}`;
 
     if (productData.currency === "USD") {
-        productPrice.textContent = `Precio: ${productData.currency} ${productData.cost}`;
+        productPrice.innerHTML = `<br><strong>Precio:</strong> <br>${productData.currency} ${productData.cost}`;
     } else {
-        productPrice.textContent = `Precio: ${productData.currency} ${productData.cost}`;
+        productPrice.innerHTML = `<br><strong>Precio:</strong> <br> ${productData.currency} ${productData.cost}`;
     }
 
-    productDescription.textContent = `Descripción: ${productData.description}`;
-    productCategory.textContent = `Categoría: ${productData.category}`;
-    productSoldCount.textContent = `Vendidos: ${productData.soldCount}`;
-
-    productImages.innerHTML = "";
+    productDescription.innerHTML = `<br><strong>Descripción:</strong> <br>${productData.description}`;
+    productCategory.innerHTML = `<br><strong>Categoría:</strong> <br>${productData.category}`;
+    productSoldCount.innerHTML = `<br><strong>Cantidad de vendidos:</strong><br> ${productData.soldCount}`;
 
     for (let imageSrc of productData.images) {
+        let imageDiv = document.createElement("div");
         let imgElement = document.createElement("img");
+
+        imageDiv.classList.add("col-md-3");
+
+        imgElement.classList.add("img-thumbnail");
+
         imgElement.src = imageSrc;
-        productImages.appendChild(imgElement);
+        imageDiv.appendChild(imgElement);
+        productImages.appendChild(imageDiv);
     }
 }
 
