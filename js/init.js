@@ -10,53 +10,53 @@ const EXT_TYPE = ".json";
 // Mostrar sesión 
 const userSession = JSON.parse(localStorage.getItem("user"));
 if (userSession && userSession.mail) {
-  const userDisplay = document.getElementById("userDisplay");
-  userDisplay.textContent = `¡Hola ${userSession.mail}!`;
+    const userDisplay = document.getElementById("userDisplay");
+    userDisplay.textContent = `¡Hola ${userSession.mail}!`;
 }
 
 // Cerrar Sesión
-document.getElementById("logout").addEventListener("click", function() {
-  localStorage.clear()
-  location.href= "login.html"
+document.getElementById("logout").addEventListener("click", function () {
+    localStorage.clear()
+    location.href = "login.html"
 });
 
 // Obtener ID del producto
 const setProdID = (id) => {
-  localStorage.setItem("prodID", id);
-  window.location = "product-info.html";
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html";
 };
 
 // -------------------------------------
 
-let showSpinner = function(){
-  document.getElementById("spinner-wrapper").style.display = "block";
+let showSpinner = function () {
+    document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
-  document.getElementById("spinner-wrapper").style.display = "none";
+let hideSpinner = function () {
+    document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
+let getJSONData = function (url) {
     let result = {};
     showSpinner();
     return fetch(url)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }else{
-        throw Error(response.statusText);
-      }
-    })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
-    })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
-    });
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw Error(response.statusText);
+            }
+        })
+        .then(function (response) {
+            result.status = 'ok';
+            result.data = response;
+            hideSpinner();
+            return result;
+        })
+        .catch(function (error) {
+            result.status = 'error';
+            result.data = error;
+            hideSpinner();
+            return result;
+        });
 }

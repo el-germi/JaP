@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         //mostrar nuevo comentario
         comentarios.push(comentarioData);
-        
+
         //guardar nuevo comentario para despues
         let comentariosGuardados = JSON.parse(localStorage.getItem("comentarios")) || [];
         comentariosGuardados.push(comentarioData);

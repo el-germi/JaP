@@ -39,40 +39,43 @@
                     </li>
                     <li class="nav-item">
                         <abbr title="Cerrar sesión"><button class="btn btn-dark" id="logout">
-                            <i class="fa-solid fa-right-from-bracket" style="color: #f09100;"></i>
-                        </button></abbr>
+                                <i class="fa-solid fa-right-from-bracket" style="color: #f09100;"></i>
+                            </button></abbr>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <main>
-            <div class="container">
-                <h1 id="nombre-producto"></h1>
-                <div id="precio-producto"></div>
-                <div id="descripcion-producto"></div>
-                <div id="categoria-producto"></div>
-                <div id="vendidos-producto"></div> 
-               <br> <strong>Imagenes ilustrativas</strong>
-                <div id="imagenes-producto" class="row"></div>
-                
+        <div class="container">
+            <h1 id="nombre-producto"></h1>
+            <div id="precio-producto"></div>
+            <div id="descripcion-producto"></div>
+            <div id="categoria-producto"></div>
+            <div id="vendidos-producto"></div>
+            <br> <strong>Imagenes ilustrativas</strong>
+            <div id="imagenes-producto" class="row"></div>
+
             <h4 class="text-center m-4">Comentarios</h4>
             <div id="comentarios"> </div>
 
             <form action="" method="post">
                 <div>
                     <h2 id="subcom">Comentar</h2>
-                    <p>Tu opinión:</p></div>
+                    <p>Tu opinión:</p>
+                </div>
                 <div class="form-floating">
-                    <textarea class="form-control" id="texto" placeholder="texto" rows="10" style="height:100%;"></textarea>
+                    <textarea class="form-control" id="texto" placeholder="texto" rows="10"
+                        style="height:100%;"></textarea>
                     <label for="texto">Descripcion</label>
                 </div>
                 <div>
                     <label for="puntos">Tu puntuación:</label>
                 </div>
-            
+
                 <div class="form-floating">
-                    <input type="range" class="rating" id="stars" min="1" max="5" placeholder="1" value="1" oninput="this.style.setProperty('--value', this.value)">
+                    <input type="range" class="rating" id="stars" min="1" max="5" placeholder="1" value="1"
+                        oninput="this.style.setProperty('--value', this.value)">
                     <!--<label for="stars">Rating</label>-->
                 </div>
                 <div class="form-floating">

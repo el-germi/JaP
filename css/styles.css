@@ -390,14 +390,15 @@ p.parrafo-productos {
 }
 
 #comentar {
-    border: none; 
-    color: white; 
-    padding: 10px 15px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    border-radius: 4px; 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
     cursor: pointer"
+
 }
 
 #subcomo {
