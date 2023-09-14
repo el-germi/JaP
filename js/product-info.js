@@ -8,20 +8,25 @@ const URLComentarios = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE
 function mostrarComentarios() {
     contenidoHTML = ""
     comentarios.forEach((comentario) => {
-        contenidoHTML += `
-        <div class="card mb-3">
+        contenidoHTML += 
+        `<div class="card mb-3">
             <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div>
-                        <p><span class="text-primary">${comentario.user}</span> - ${comentario.dateTime}</p>
-                        <p class="flex-row">${estrellas(comentario.score)}</p>
-                    </div>
-                    <div>
-                        <p>${comentario.description}</p>
+                <div class="d-flex">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="text-primary mb-0"> 
+                                ${comentario.user}
+                                <span class="text-dark mb-3">${comentario.description}</span> 
+                            </h6>
+                            <p class="mb-0">${comentario.dateTime}</p>
+                        </div>
+                        <div class="d-flex flex-row">
+                            ${estrellas(comentario.score)}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>`
+        </div>`;
     })
 
     document.getElementById("comentarios").innerHTML = contenidoHTML;
