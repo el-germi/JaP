@@ -376,6 +376,12 @@ p.parrafo-productos {
     -webkit-mask: repeat left center/var(--starsize) var(--star);
 }
 
+.rating::-ms-track {
+    background: linear-gradient(to right, var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--star);
+}
+
 .rating::-moz-range-thumb {
     height: var(--starsize);
     opacity: 0;
@@ -387,6 +393,12 @@ p.parrafo-productos {
     opacity: 0;
     width: calc(var(--starsize) / 2);
     -webkit-appearance: none;
+}
+
+.rating::-ms-thumb {
+    height: var(--starsize);
+    opacity: 0;
+    width: calc(var(--starsize) / 2);
 }
 
 #comentar {
@@ -401,6 +413,6 @@ p.parrafo-productos {
 
 }
 
-#subcomo {
+#subcom {
     font-weight: normal;
 }
