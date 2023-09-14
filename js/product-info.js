@@ -1,4 +1,3 @@
-// Entrega3Parte3
 let comentarios = []
 const prodID = localStorage.getItem("prodID")
 const URLComentarios = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE
@@ -6,7 +5,7 @@ const URLComentarios = PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE
 
 // función para mostrar cada uno de los comentarios en product-info.html
 function mostrarComentarios() {
-    contenidoHTML = ""
+    let contenidoHTML = ""
     comentarios.forEach((comentario) => {
         contenidoHTML += 
         `<div class="card mb-3">
