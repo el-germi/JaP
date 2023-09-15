@@ -132,19 +132,13 @@ function mostrarDatosDelProducto(productData) {
     let productImages = document.getElementById("imagenes-producto");
 
     productName.innerHTML = `${productData.name}`;
-
-    if (productData.currency === "USD") {
-        productPrice.innerHTML = `<br><strong>Precio:</strong> <br>${productData.currency} ${productData.cost}`;
-    } else {
-        productPrice.innerHTML = `<br><strong>Precio:</strong> <br> ${productData.currency} ${productData.cost}`;
-    }
-
+    productPrice.innerHTML = `<br><strong>Precio:</strong> <br>${productData.currency} ${productData.cost}`;
     productDescription.innerHTML = `<br><strong>Descripción:</strong> <br>${productData.description}`;
     productCategory.innerHTML = `<br><strong>Categoría:</strong> <br>${productData.category}`;
     productSoldCount.innerHTML = `<br><strong>Cantidad de vendidos:</strong><br> ${productData.soldCount}`;
 
     for (let imageSrc of productData.images) {
-        let imageDiv = document.createElement("div");
+        let imageDiv = document.createElement("div") ;
         let imgElement = document.createElement("img");
 
         imageDiv.classList.add("col-md-3");
