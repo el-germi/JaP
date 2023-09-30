@@ -363,10 +363,6 @@ p.parrafo-productos {
     appearance: none;
 }
 
-.dropBorder {
-    filter: drop-shadow(0px 0px 2px black);
-}
-
 .rating::-moz-range-track {
     background: linear-gradient(to right, var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
     block-size: 100%;
@@ -417,13 +413,13 @@ p.parrafo-productos {
 
 }
 
-#puntos{
+#puntos {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
 
-.switch{
+.switch {
     margin-left: 10%;
     background-color: #c6d0f0;
     border-radius: 1000px;
@@ -432,19 +428,19 @@ p.parrafo-productos {
     cursor: pointer;
     display: flex;
     outline: none;
-    
+
 }
 
-.switch>i{
+.switch>i {
     width: 28px;
     height: 28px;
     line-height: 28px;
     display: block;
-    background:none;
-    
+    background: none;
+
 }
 
-.switch::after{
+.switch::after {
     content: "";
     display: block;
     width: 30px;
@@ -460,45 +456,52 @@ p.parrafo-productos {
 
 }
 
-.switch.active{
-  background:orange; 
-  color: black; 
+.switch.active {
+    background: orange;
+    color: black;
 }
 
-.active::after{
+.active::after {
     right: 0;
     left: unset;
 }
 
-body{
+body {
     transition: .3s ease all;
 }
-.dark{
+
+.dark {
     background-color: #191919;
     transition: .3s ease all;
     color: white;
-    
-    .row{
-        background-color: #191919;
-        color:white
-    }    
-    .list-group-item{background-color: #191919;
-        color:white}
 
-     .vendidos{
+    .row {
         background-color: #191919;
-        color:white
-     }
+        color: white
+    }
 
-     .card-body{
+    .list-group-item {
         background-color: #191919;
-        color:white;
-     }
-     .form-floating{
+        color: white
+    }
+
+    .vendidos {
         background-color: #191919;
-        color:white;
-     }
-   
+        color: white
+    }
+
+    .card-body {
+        background-color: #191919;
+        color: white;
+    }
+
+    .form-floating {
+        background-color: #191919;
+        color: white;
+    }
+
 }
 
-
+.dropBorder {
+    filter: drop-shadow(0px 0px 2px black);
+}
