@@ -130,12 +130,14 @@ function mostrarDatosDelProducto(productData) {
     let productCategory = document.getElementById("categoria-producto");
     let productSoldCount = document.getElementById("vendidos-producto");
     let productImages = document.getElementById("imagenes-producto");
+    let productRelacionados = document.getElementById("relacionados");
 
     productName.innerHTML = `${productData.name}`;
     productPrice.innerHTML = `<br><strong>Precio:</strong> <br>${productData.currency} ${productData.cost}`;
     productDescription.innerHTML = `<br><strong>Descripción:</strong> <br>${productData.description}`;
     productCategory.innerHTML = `<br><strong>Categoría:</strong> <br>${productData.category}`;
     productSoldCount.innerHTML = `<br><strong>Cantidad de vendidos:</strong><br> ${productData.soldCount}`;
+
 
     for (let imageSrc of productData.images) {
         let imageDiv = document.createElement("div") ;
@@ -148,6 +150,14 @@ function mostrarDatosDelProducto(productData) {
         imgElement.src = imageSrc;
         imageDiv.appendChild(imgElement);
         productImages.appendChild(imageDiv);
+    }
+
+    for (let prod of productData.relatedProducts) {
+        productRelacionados.innerHTML += `
+            <button class="col-md-3 p-1 ms-5 btn btn-outline-secondary" onclick="setProdID(${prod.id})">
+                <h4>${prod.name}</h4>
+                <img src="${prod.image}" alt="${prod.name}" class="img-thumbnail "/>
+            </button>`
     }
 }
 
