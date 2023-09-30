@@ -129,7 +129,7 @@ function mostrarDatosDelProducto(productData) {
     let productDescription = document.getElementById("descripcion-producto");
     let productCategory = document.getElementById("categoria-producto");
     let productSoldCount = document.getElementById("vendidos-producto");
-    let productImages = document.getElementById("imagenes-producto");
+    //let productImages = document.getElementById("imagenes-producto");
     let productRelacionados = document.getElementById("relacionados");
 
     productName.innerHTML = `${productData.name}`;
@@ -138,8 +138,23 @@ function mostrarDatosDelProducto(productData) {
     productCategory.innerHTML = `<br><strong>Categoría:</strong> <br>${productData.category}`;
     productSoldCount.innerHTML = `<br><strong>Cantidad de vendidos:</strong><br> ${productData.soldCount}`;
 
+    let carouselImgs = document.getElementById("carouselImgs");
+    let carouselBtns = document.getElementById("carouselBtns");
 
-    for (let imageSrc of productData.images) {
+    for (let i = 0; i < productData.images.length; i++) {
+        carouselImgs.innerHTML+=`<div class="carousel-item">
+            <img src="${productData.images[i]}" class="d-block w-100">
+        </div>`
+        carouselBtns.innerHTML+=`<button type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>`
+        
+    }
+    console.log(carouselBtns.childNodes)
+    carouselBtns.childNodes[0].setAttribute("aria-current","true");
+    carouselBtns.childNodes[0].classList.add("active");
+    carouselImgs.childNodes[0].classList.add("active");
+
+    /*for (let imageSrc of productData.images) {
         let imageDiv = document.createElement("div") ;
         let imgElement = document.createElement("img");
 
@@ -150,7 +165,9 @@ function mostrarDatosDelProducto(productData) {
         imgElement.src = imageSrc;
         imageDiv.appendChild(imgElement);
         productImages.appendChild(imageDiv);
-    }
+    }*/
+
+
 
     for (let prod of productData.relatedProducts) {
         productRelacionados.innerHTML += `
