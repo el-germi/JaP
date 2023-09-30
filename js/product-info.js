@@ -140,6 +140,8 @@ function mostrarDatosDelProducto(productData) {
 
     let carouselImgs = document.getElementById("carouselImgs");
     let carouselBtns = document.getElementById("carouselBtns");
+    carouselImgs.innerHTML = "";
+    carouselBtns.innerHTML = "";
 
     for (let i = 0; i < productData.images.length; i++) {
         carouselImgs.innerHTML += `<div class="carousel-item">
@@ -165,8 +167,6 @@ function mostrarDatosDelProducto(productData) {
         imageDiv.appendChild(imgElement);
         productImages.appendChild(imageDiv);
     }*/
-
-
 
     for (let prod of productData.relatedProducts) {
         productRelacionados.innerHTML += `
