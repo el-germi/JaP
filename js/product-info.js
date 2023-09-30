@@ -159,10 +159,12 @@ function mostrarDatosDelProducto(productData) {
 
     for (let prod of productData.relatedProducts) {
         productRelacionados.innerHTML += `
-            <button class="col-md-3  me-md-2" onclick="setProdID(${prod.id})">
-                <h4>${prod.name}</h4>
-                <img src="${prod.image}" alt="${prod.name}" class="img-thumbnail "/>
-            </button>`
+        <div class="col-md-3 mb-2">
+            <button class="btn btn-light btn-block custom-btn" onclick="setProdID(${prod.id})">
+                <h4 class="fw-bold">${prod.name}</h4>
+                <img src="${prod.image}" alt="${prod.name}" class="img-thumbnail"/>
+            </button>
+        </div>`;
     }
 }
 
