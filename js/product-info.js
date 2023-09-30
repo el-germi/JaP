@@ -138,6 +138,7 @@ function mostrarDatosDelProducto(productData) {
     productCategory.innerHTML = `<br><strong>Categoría:</strong> <br>${productData.category}`;
     productSoldCount.innerHTML = `<br><strong>Cantidad de vendidos:</strong><br> ${productData.soldCount}`;
 
+    // Carousel imagenes
     let carouselImgs = document.getElementById("carouselImgs");
     let carouselBtns = document.getElementById("carouselBtns");
     carouselImgs.innerHTML = "";
@@ -154,23 +155,11 @@ function mostrarDatosDelProducto(productData) {
     carouselBtns.childNodes[0].setAttribute("aria-current", "true");
     carouselBtns.childNodes[0].classList.add("active");
     carouselImgs.childNodes[0].classList.add("active");
-
-    /*for (let imageSrc of productData.images) {
-        let imageDiv = document.createElement("div") ;
-        let imgElement = document.createElement("img");
-
-        imageDiv.classList.add("col-md-3");
-
-        imgElement.classList.add("img-thumbnail");
-
-        imgElement.src = imageSrc;
-        imageDiv.appendChild(imgElement);
-        productImages.appendChild(imageDiv);
-    }*/
+    //FIN Carousel
 
     for (let prod of productData.relatedProducts) {
         productRelacionados.innerHTML += `
-            <button class="col-md-3 p-1 ms-5 btn btn-outline-secondary" onclick="setProdID(${prod.id})">
+            <button class="col-md-3  me-md-2" onclick="setProdID(${prod.id})">
                 <h4>${prod.name}</h4>
                 <img src="${prod.image}" alt="${prod.name}" class="img-thumbnail "/>
             </button>`
