@@ -495,6 +495,13 @@ body{
         color:white;
      }
    
+     #productos .vendidos {
+       background-color: #191919;
+       color: white;
+     }
+     #productos .cuadrante:hover {
+        filter: brightness(1);
+    }
 }
 
 
