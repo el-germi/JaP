@@ -571,3 +571,10 @@ body {
 #subtotal{
     margin-left: 11.5%;
 }
+
+.subtotal{
+    display: flex;
+    align-items: flex-start;
+  margin-left: 11.5%;
+   
+}

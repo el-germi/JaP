@@ -52,16 +52,18 @@ function MostrarDataProductos() {
     const item = cartInfo[i - 1];
     productos.innerHTML += `
         
-       <div class ="nombre">
-       <div class="achicar"><img class="imgchiquita" src=${item.image}></div>  
+      <div class ="nombre">
+          <div class="achicar"><img class="imgchiquita" src=${item.image}></div>  
           <h2>${item.name}</h2>
           <p>${item.currency} ${item.unitCost} </p>
           <input type="number" id="number${i}" value="${item.count}" attr_id="${i}" min=0>
-          <p id="subtotal${i}"> <strong> ${item.currency}</strong></p> 
+          <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count*item.unitCost}</p></div>
         </div>
       </div>
 
       `
+  }
+  for (let i = 1; i < cartInfo.length + 1; i++) {
     document.getElementById("number" + i).addEventListener("change", updateValues);
   }
 }
@@ -69,14 +71,6 @@ function MostrarDataProductos() {
 
 function updateValues(evento) {
   let i = evento.target.getAttribute("attr_id");
-  console.log(i);
   document.getElementById("subtotal" + i).innerHTML = document.getElementById("number" + i).value * cartInfo[i-1].unitCost;
-
-  //let cantidad = e.source.value;
-  //let cuenta = precio * cantidad
-
-  //return cuenta;
-
 }
 
-setInterval(updateValues, 500); 
