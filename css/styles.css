@@ -488,14 +488,15 @@ body {
     .vendidos {
         background-color: #191919;
 
-        color:white;
-     }
-   
-     #productos .vendidos {
-       background-color: #191919;
-       color: white;
-     }
-     #productos .cuadrante:hover {
+        color: white;
+    }
+
+    #productos .vendidos {
+        background-color: #191919;
+        color: white;
+    }
+
+    #productos .cuadrante:hover {
         filter: brightness(1);
     }
 
@@ -523,15 +524,50 @@ body {
 
 
 .col-md-3 {
-    margin-right: 30px; 
+    margin-right: 30px;
 }
 
 
 .custom-btn {
-    min-width: 200px; 
+    min-width: 200px;
     transition: background-color 0.3s ease;
 }
 
 .custom-btn:hover {
-    background-color: #ccc; 
+    background-color: #ccc;
+}
+
+.carrito {
+    display: flex;
+    margin-left: 17%;
+    font-weight: bold;
+}
+
+.carrito>p {
+    margin-left: 12%;
+}
+
+.nombre {
+    display: flex;
+    align-items: center;
+}
+
+.achicar {
+    margin-left: 5%;
+    width: 10%;
+    height: 10%;
+
+}
+.nombre{
+    margin-left: 12%;
+}
+.nombre>p {
+    margin-left: 8%;
+}
+.nombre>input{
+    margin-left: 11%;
+    width : 2.5%;
+}
+#subtotal{
+    margin-left: 11.5%;
 }
