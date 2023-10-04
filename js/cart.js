@@ -31,30 +31,34 @@ fetch(URL)
    return res.json();
     }})
 .then(res =>{
-  console.log(res.articles)
   let productos = res.articles;
-  productos.concat(JSON.parse(localStorage.getItem("prodsCarrito")) || [])
-  MostrarDataProductos(productos)
+  let prodLocal = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+  console.log(productos)
+  console.log(prodLocal)
+  let masProds = productos.concat(prodLocal)
+
+  console.log(masProds)
+  MostrarDataProductos(masProds)
 }  )
 
 
 function MostrarDataProductos(dataArray) {
   productos.innerHTML = "";
-  
   for (const item of dataArray) {
+    
       productos.innerHTML += `
         <img src=${item.image}>
-        <div class="contenido">
+        <div class="nombre">
           <h2>${item.name}</h2>
           <p class="descripcion">${item.count}</p>
           <p>${item.currency} ${item.unitCost} </p>
-          <input type="number" value="1" min=0 onchange>
-          <p> ${item.unitCost}</p>
+          <input type="number" id"number" value="1" min=0>
+          <p> <strong> ${item.currency} ${item.unitCost} </strong></p> 
           
         </div>
-      </div>`
-  
-      
+      </div>
+
+      `
   }
-}
+}  
 
