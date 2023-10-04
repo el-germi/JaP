@@ -65,6 +65,30 @@
         
         <div id="productos"></div>
     </main>
+    <head>
+        <title>Método de Envío</title>
+        <link rel="stylesheet" type="text/css" href="styless.css">
+    </head>
+    <body>
+        <h2>Seleccione el Tipo de Envío:</h2>
+        <form>
+            <input type="radio" name="tipo_envio" value="premium"> Premium (2-5 días) - 15%<br>
+            <input type="radio" name="tipo_envio" value="express"> Express (5-8 días) - 7%<br>
+            <input type="radio" name="tipo_envio" value="standard"> Standard (12 a 15 días) - 5%<br>
+        </form>
+    
+        <h2>Dirección de Entrega:</h2>
+        <form>
+            <label for="calle">Calle:</label>
+            <input type="text" id="calle" name="calle"><br><br>
+            
+            <label for="numero">Número:</label>
+            <input type="text" id="numero" name="numero"><br><br>
+            
+            <label for="esquina">Esquina:</label>
+            <input type="text" id="esquina" name="esquina"><br><br>
+        </form>
+        <body>
     <footer class="text-muted">
         <div class="container">
             <p class="float-end">
