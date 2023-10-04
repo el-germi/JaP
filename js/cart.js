@@ -79,4 +79,4 @@ function updateValues(evento) {
 
 }
 
-setInterval(updateValues, 500);
+setInterval(updateValues, 500); 
