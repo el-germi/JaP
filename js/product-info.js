@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let carr = JSON.parse(localStorage.getItem("prodsCarrito")) || []
 
     if (carr.find(e => e.id == prodID)) {
-        document.getElementById("comprar").setAttribute("disabled","")
+        document.getElementById("comprar").setAttribute("disabled", "")
     } else {
         document.getElementById("comprar").addEventListener("click", () => {
             let arr = JSON.parse(localStorage.getItem("prodsCarrito")) || []
@@ -124,10 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 unitCost: producto.cost,
                 currency: producto.currency,
                 image: producto.images[0]
-            })
+            });
             localStorage.setItem("prodsCarrito", JSON.stringify(arr));
-            Swal.fire("titulo", "subtexto", "success")
-            document.getElementById("comprar").setAttribute("disabled","")
+            Swal.fire("Agregado al carrito",
+                "Se puede modificar la cantidad desde el 'carrito'",
+                "success")
+            document.getElementById("comprar").setAttribute("disabled", "")
         });
     }
 });
