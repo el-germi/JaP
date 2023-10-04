@@ -48,29 +48,29 @@ fetch(URL)
 
 function MostrarDataProductos() {
   productos.innerHTML = "";
-  for (let i = 1; i < cartInfo.length + 1; i++) {
-    const item = cartInfo[i - 1];
+  for (let i = 0; i < cartInfo.length; i++) {
+    const item = cartInfo[i];
     productos.innerHTML += `
-        
       <div class ="nombre">
           <div class="achicar"><img class="imgchiquita" src=${item.image}></div>  
           <h2>${item.name}</h2>
-          <p>${item.currency} ${item.unitCost} </p>
-          <input type="number" id="number${i}" value="${item.count}" attr_id="${i}" min=0>
-          <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count*item.unitCost}</p></div>
+          <p>${item.currency} ${item.unitCost}</p>
+          <input type="number" id="number${i}" value="${item.count}" min="0" max="10" onchange="updateVal(${i})">
+          <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
         </div>
-      </div>
-
-      `
-  }
-  for (let i = 1; i < cartInfo.length + 1; i++) {
-    document.getElementById("number" + i).addEventListener("change", updateValues);
+      </div>`
   }
 }
 
+function updateVal(i) {
+  document.getElementById("subtotal" + i).innerHTML = document.getElementById("number" + i).value * cartInfo[i].unitCost;
+  //TODO actualizar localstorage con los counts(solo si no es del server)
+  //toy viendo como hacer esto del TODO AHHH
+  //despues lo hago, KAHOOT
 
-function updateValues(evento) {
-  let i = evento.target.getAttribute("attr_id");
-  document.getElementById("subtotal" + i).innerHTML = document.getElementById("number" + i).value * cartInfo[i-1].unitCost;
+  let arr = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+  let index = arr.findIndex(e=>cartInfo[i].id == prodID)
+  arr[index].count = document.getElementById("number" + i).value;
+  localStorage.setItem("prodsCarrito", JSON.stringify(arr));
 }
 
