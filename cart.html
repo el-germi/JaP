@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>eMercado - Todo lo que busques está aquí</title>
     <link rel="icon" type="image/png" href="./img/favicon.png">
-    
+
     <script src="https://kit.fontawesome.com/7b32b404d1.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,20 +33,28 @@
                         <a class="nav-link" href="sell.html">Vender</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="userDisplay" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                        <a class="nav-link dropdown-toggle" id="userDisplay" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"></a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
-                                <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Mi carrito</a>
+                                <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Mi
+                                    carrito</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="my-profile.html"><i class="fa-solid fa-user"></i> Mi perfil</a>
+                                <a class="dropdown-item" href="my-profile.html"><i class="fa-solid fa-user"></i> Mi
+                                    perfil</a>
                             </li>
-                            <li><div class="botones_dark"><button class="switch" id="switch"> <i class="fa-regular fa-sun"></i> <i class="fa-solid fa-moon"></i></button></div></li>
+                            <li>
+                                <div class="botones_dark"><button class="switch" id="switch"> <i
+                                            class="fa-regular fa-sun"></i> <i class="fa-solid fa-moon"></i></button>
+                                </div>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <button class="dropdown-item" href="login.html" id="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</button>
+                                <button class="dropdown-item" href="login.html" id="logout"><i
+                                        class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</button>
                             </li>
                         </ul>
                     </li>
@@ -74,27 +82,30 @@
                                     <div class="row">
                                         <div class="p-5">
                                             <h5 class="mb-3">Tipo de envío</h5>
-                                                <div class="mb-4 pb-2">
-                                                    <input type="radio" name="tipo_envio" value="premium" checked=""> Premium (2-5 días) - 15%<br>
-                                                    <input type="radio" name="tipo_envio" value="express"> Express (5-8 días) - 7%<br>
-                                                    <input type="radio" name="tipo_envio" value="standard"> Standard (12 a 15 días) - 5%<br>
-                                                </div>
-                                                <h5 class="mb-3">Direccion de envío</h5>
-                                                    <div class="mb-5">
-                                                        <label for="calle">Calle:</label>
-                                                        <input type="text" id="calle" name="calle"><br><br>
-                                                        
-                                                        <label for="numero">Número:</label>
-                                                        <input type="text" id="numero" name="numero"><br><br>
-                                                        
-                                                        <label for="esquina">Esquina:</label>
-                                                        <input type="text" id="esquina" name="esquina"><br><br>
-                                                    </div>
-                                                <hr class="my-4">
-                                                <div class="d-flex justify-content-between mb-4">
-                                                    <h5>Total con envío:</h5>
-                                                    <h5 id="total"></h5>
-                                                </div>
+                                            <div class="mb-4 pb-2">
+                                                <input type="radio" name="tipo_envio" value="premium" checked="">
+                                                Premium (2-5 días) - 15%<br>
+                                                <input type="radio" name="tipo_envio" value="express"> Express (5-8
+                                                días) - 7%<br>
+                                                <input type="radio" name="tipo_envio" value="standard"> Standard (12 a
+                                                15 días) - 5%<br>
+                                            </div>
+                                            <h5 class="mb-3">Direccion de envío</h5>
+                                            <div class="mb-5">
+                                                <label for="calle">Calle:</label>
+                                                <input type="text" id="calle" name="calle"><br><br>
+
+                                                <label for="numero">Número:</label>
+                                                <input type="text" id="numero" name="numero"><br><br>
+
+                                                <label for="esquina">Esquina:</label>
+                                                <input type="text" id="esquina" name="esquina"><br><br>
+                                            </div>
+                                            <hr class="my-4">
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <h5>Total con envío:</h5>
+                                                <h5 id="total"></h5>
+                                            </div>
                                             <button type="button" class="btn btn-block btn-primary">Comprar</button>
                                         </div>
                                     </div>
@@ -105,25 +116,26 @@
                 </div>
             </div>
         </section>
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-end">
-                <a href="#">Volver arriba</a>
-            </p>
-            <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-end">
+                    <a href="#">Volver arriba</a>
+                </p>
+                <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a
+                        Programar</a></p>
+            </div>
+        </footer>
+        <div id="spinner-wrapper">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-    </footer>
-    <div id="spinner-wrapper">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/cart.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/cart.js"></script>
 </body>
 
 </html>
