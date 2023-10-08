@@ -51,23 +51,26 @@ function MostrarDataProductos() {
     for (let i = 0; i < cartInfo.length; i++) {
         const item = cartInfo[i];
         productos.innerHTML += `
-        <div class="row mb-4 d-flex justify-content-between align-items-center">
-            <div class="col">
+        <div class="cart-grid">
+            <div>
                 <img src="${item.image}" class="img-fluid">
             </div>
-            <div class="col">
+            <div>
                 <h6 class="text-black mb-0">${item.name}</h6>
             </div>
-            <div class="col">
+            <div>
                 <input type="number" id="number${i}" value="${item.count}" min="1" oninput="updateVal(${i})" class="form-control form-control-sm">
             </div>
-            <div class="col">
+            <div>
                 <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
+            </div>
+            <div class="trash-icon">
+                <i class="fa-solid fa-trash"></i> 
             </div>
         </div>
         <hr class=""></hr>`
-        // No funca el grid xd lo intentaré hacer en otro momento
         // por que no una tabla? con bootstrap deve haber algo que la haga medio cheta
+        // ahí pude !!! pero con css común, voy a chequear lo de la tabla pero por ahora lo dejo así
     }
 }
 
