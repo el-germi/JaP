@@ -82,3 +82,4 @@ function updateVal(i) {
   localStorage.setItem("prodsCarrito", JSON.stringify(arr));
 }
 
+document.getElementById("Total_envio")
