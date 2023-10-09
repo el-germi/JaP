@@ -70,7 +70,7 @@ function MostrarDataProductos() {
                 <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
             </div>
             <div class="trash-icon">
-                <i class="fa-solid fa-trash"></i> 
+                <i class="fa-solid fa-trash" onclick="del(${i})"></i> 
             </div>
         </div>
         <hr class=""></hr>`
