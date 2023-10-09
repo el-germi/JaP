@@ -27,7 +27,6 @@ btnSwitch.addEventListener("click", () => {
 // FUNCIONALIDAD DEL CARRITO
 // ---------------------------------------
 
-let cartInfo = []
 let usuario = "25801";
 let URL = `https://japceibal.github.io/emercado-api/user_cart/${usuario}.json`;
 
@@ -40,14 +39,20 @@ fetch(URL)
     .then(res => {
         let productos = res.articles;
         let prodLocal = JSON.parse(localStorage.getItem("prodsCarrito")) || []
-        let masProds = productos.concat(prodLocal)
-        cartInfo = masProds;
+
+        productos.forEach(e => {
+            if(!prodLocal.find(p=>p.id==e.id))
+            prodLocal.push(e)
+        });
+        localStorage.setItem("prodsCarrito", JSON.stringify(prodLocal));
+
         MostrarDataProductos()
     })
 
 
 function MostrarDataProductos() {
     productos.innerHTML = "";
+    cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
     for (let i = 0; i < cartInfo.length; i++) {
         const item = cartInfo[i];
         productos.innerHTML += `
@@ -64,6 +69,9 @@ function MostrarDataProductos() {
             <div class="col">
                 <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
             </div>
+            <div class="col">
+                <button onclick="del(${i})" class="btn btn-warning"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
         </div>
         <hr class=""></hr>`
         // No funca el grid xd lo intentaré hacer en otro momento
@@ -71,21 +79,38 @@ function MostrarDataProductos() {
     }
 }
 
-function updateVal(i) {
-    let arr = JSON.parse(localStorage.getItem("prodsCarrito")) || []
-    let index = arr.findIndex(e => e.id == cartInfo[i].id)
+function del(i) {
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
 
-    if(index > -.5) {//if found => it's from localstorage
-        let newCount = document.getElementById("number" + i).value;
+    cartInfo.splice(i,1);
 
-        //update localstorage
-        arr[index].count = newCount;
-        localStorage.setItem("prodsCarrito", JSON.stringify(arr));
-
-        //update subtotal column
-        document.getElementById("subtotal" + i).innerHTML = newCount * cartInfo[i].unitCost;
-
-    } else {//if not then its from server
-        alert("Server ammounts can't be modified (yet)");
-    }
+    localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
+    
+    MostrarDataProductos()
 }
+
+function updateVal(i) {
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+
+    let newCount = document.getElementById("number" + i).value;
+    cartInfo[i].count = newCount;
+    document.getElementById("subtotal" + i).innerHTML = newCount * cartInfo[i].unitCost;
+
+    localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
+}
+
+/*
+    var myHeaders = new Headers();
+    myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d");
+
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        headers: myHeaders
+    };
+
+    fetch("https://api.apilayer.com/fixer/convert?to={to}&from={from}&amount={amount}", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+*/
