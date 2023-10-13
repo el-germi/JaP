@@ -41,39 +41,42 @@ fetch(URL)
         let prodLocal = JSON.parse(localStorage.getItem("prodsCarrito")) || []
 
         productos.forEach(e => {
-            if(!prodLocal.find(p=>p.id==e.id))
-            prodLocal.push(e)
+            if (!prodLocal.find(p => p.id == e.id))
+                prodLocal.push(e)
         });
         localStorage.setItem("prodsCarrito", JSON.stringify(prodLocal));
 
         MostrarDataProductos()
+        actualizarTotal()
     })
 
 
 function MostrarDataProductos() {
+    let productos = document.getElementById("productos");
     productos.innerHTML = "";
     cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
     for (let i = 0; i < cartInfo.length; i++) {
         const item = cartInfo[i];
         productos.innerHTML += `
-        <div class="cart-grid">
-            <div>
-                <img src="${item.image}" class="img-fluid">
+            <div class="cart-grid" id="div${i}">
+                <div>
+                    <img src="${item.image}" class="img-fluid">
+                </div>
+                <div>
+                    <h6 class="text-black mb-0">${item.name}</h6>
+                </div>
+                <div>
+                    <input type="number" id="number${i}" value="${item.count}" min="1" oninput="updateVal(${i})" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
+                </div>
+                <div class="trash-icon">
+                    <i class="fa-solid fa-trash" onclick="del(${i})"></i> 
+                </div>
             </div>
-            <div>
-                <h6 class="text-black mb-0">${item.name}</h6>
-            </div>
-            <div>
-                <input type="number" id="number${i}" value="${item.count}" min="1" oninput="updateVal(${i})" class="form-control form-control-sm">
-            </div>
-            <div>
-                <div class="subtotal"><strong>${item.currency} </strong><p id="subtotal${i}">${item.count * item.unitCost}</p></div>
-            </div>
-            <div class="trash-icon">
-                <i class="fa-solid fa-trash" onclick="del(${i})"></i> 
-            </div>
-        </div>
-        <hr class=""></hr>`
+            <hr id="hr${i}"/>
+        `
         // por que no una tabla? con bootstrap deve haber algo que la haga medio cheta
         // ahí pude !!! pero con css común, voy a chequear lo de la tabla pero por ahora lo dejo así
     }
@@ -82,11 +85,14 @@ function MostrarDataProductos() {
 function del(i) {
     let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
 
-    cartInfo.splice(i,1);
+    cartInfo.splice(i, 1);
 
     localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
-    
-    MostrarDataProductos()
+
+    document.getElementById("div"+i).remove();
+    document.getElementById("hr"+i).remove();
+
+    actualizarTotal()
 }
 
 function updateVal(i) {
@@ -97,9 +103,52 @@ function updateVal(i) {
     document.getElementById("subtotal" + i).innerHTML = newCount * cartInfo[i].unitCost;
 
     localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
+    actualizarTotal()
 }
 
-/*
+let totalUyu = 0;
+let totalUsd = 0;
+
+function actualizarTotal() {
+    let total = document.getElementById("total");
+    let pesosSwitch = document.getElementById("pesosSwitch");//true = USD
+
+    totalUyu = 0;
+    totalUsd = 0;
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+
+    cartInfo.forEach(e => {
+        if (e.currency == "UYU") {
+            totalUyu += e.count * e.unitCost;
+        } else if (e.currency == "USD") {
+            totalUsd += e.count * e.unitCost;
+        }
+    });
+
+    if (pesosSwitch.checked) {//true = USD
+        convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result)
+    } else {
+        convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result)
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    let pesosSwitch = document.getElementById("pesosSwitch");//true = USD
+    let currency = document.getElementById("currency");
+
+    pesosSwitch.checked = false;
+    pesosSwitch.addEventListener("click", () => {
+        if (pesosSwitch.checked) {//true = USD
+            currency.innerHTML = "USD";
+        } else {
+            currency.innerHTML = "UYU";
+        }
+        actualizarTotal();
+    });
+});
+
+function convert(from, to, amount) {
     var myHeaders = new Headers();
     myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d");
 
@@ -109,8 +158,6 @@ function updateVal(i) {
         headers: myHeaders
     };
 
-    fetch("https://api.apilayer.com/fixer/convert?to={to}&from={from}&amount={amount}", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-*/
+    return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
+        .then(response => response.json())
+}
