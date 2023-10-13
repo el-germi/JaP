@@ -38,7 +38,7 @@ fetch(URL)
     })
     .then(res => {
         let productos = res.articles;
-        let prodLocal = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+        let prodLocal = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
 
         productos.forEach(e => {
             if (!prodLocal.find(p => p.id == e.id))
@@ -46,8 +46,8 @@ fetch(URL)
         });
         localStorage.setItem("prodsCarrito", JSON.stringify(prodLocal));
 
-        MostrarDataProductos()
-        actualizarTotal()
+        MostrarDataProductos();
+        actualizarTotal();
     })
 
 
@@ -83,73 +83,65 @@ function MostrarDataProductos() {
 }
 
 function del(i) {
-    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
-
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
     cartInfo.splice(i, 1);
-
     localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
 
-    document.getElementById("div"+i).remove();
-    document.getElementById("hr"+i).remove();
+    document.getElementById("div" + i).remove();
+    document.getElementById("hr" + i).remove();
 
-    actualizarTotal()
+    actualizarTotal();
 }
 
 function updateVal(i) {
-    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
 
     let newCount = document.getElementById("number" + i).value;
     cartInfo[i].count = newCount;
     document.getElementById("subtotal" + i).innerHTML = newCount * cartInfo[i].unitCost;
 
     localStorage.setItem("prodsCarrito", JSON.stringify(cartInfo));
-    actualizarTotal()
+    actualizarTotal();
 }
 
-let totalUyu = 0;
-let totalUsd = 0;
-
+// FUNCIONALIDAD TOTAL
 function actualizarTotal() {
     let total = document.getElementById("total");
-    let pesosSwitch = document.getElementById("pesosSwitch");//true = USD
+    let pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
 
-    totalUyu = 0;
-    totalUsd = 0;
-    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || []
+    let totalUyu = 0;
+    let totalUsd = 0;
+    let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
 
     cartInfo.forEach(e => {
-        if (e.currency == "UYU") {
+        if (e.currency == "UYU")
             totalUyu += e.count * e.unitCost;
-        } else if (e.currency == "USD") {
+        else //if (e.currency == "USD")
             totalUsd += e.count * e.unitCost;
-        }
     });
 
-    if (pesosSwitch.checked) {//true = USD
-        if(totalUyu > 0)
-            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result)
+    if (pesosSwitch.checked) //true = USD
+        if (totalUyu > 0)
+            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result);
         else
             total.innerHTML = totalUsd;
-    } else {
-        if(totalUsd > 0)
-            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result)
+    else
+        if (totalUsd > 0)
+            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result);
         else
-            total.innerHTML = totalUyu
-        }
-
+            total.innerHTML = totalUyu;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    let pesosSwitch = document.getElementById("pesosSwitch");//true = USD
+    let pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
     let currency = document.getElementById("currency");
 
     pesosSwitch.checked = false;
     pesosSwitch.addEventListener("click", () => {
-        if (pesosSwitch.checked) {//true = USD
+        if (pesosSwitch.checked) //true = USD
             currency.innerHTML = "USD";
-        } else {
+        else
             currency.innerHTML = "UYU";
-        }
         actualizarTotal();
     });
 });
@@ -158,12 +150,9 @@ function convert(from, to, amount) {
     var myHeaders = new Headers();
     myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d");
 
-    var requestOptions = {
+    return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, {
         method: 'GET',
         redirect: 'follow',
         headers: myHeaders
-    };
-
-    return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
-        .then(response => response.json())
+    }).then(response => response.json());
 }
