@@ -126,10 +126,16 @@ function actualizarTotal() {
     });
 
     if (pesosSwitch.checked) {//true = USD
-        convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result)
+        if(totalUyu > 0)
+            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result)
+        else
+            total.innerHTML = totalUsd;
     } else {
-        convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result)
-    }
+        if(totalUsd > 0)
+            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result)
+        else
+            total.innerHTML = totalUyu
+        }
 
 }
 
