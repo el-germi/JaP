@@ -122,12 +122,12 @@ function actualizarTotal() {
 
     if (pesosSwitch.checked) //true = USD
         if (totalUyu > 0)
-            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = totalUsd + s.result);
+            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = (totalUsd + s.result).toFixed(2));
         else
             total.innerHTML = totalUsd;
     else
         if (totalUsd > 0)
-            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = totalUyu + s.result);
+            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = (totalUyu + s.result).toFixed(0));
         else
             total.innerHTML = totalUyu;
 }
