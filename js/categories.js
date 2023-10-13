@@ -167,32 +167,21 @@ btnSwitch.addEventListener("click", () => {
 });
 
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    // Función para manejar cambios en el tamaño de la pantalla
+window.addEventListener('DOMContentLoaded', () => {
     function handleScreenSize() {
-        // Obtener el ancho de la pantalla
         const screenWidth = window.innerWidth || document.documentElement.clientWidth;
-
-        // Obtener el elemento con el id "lista_categorias"
         const listaCategoriasElement = document.getElementById('lista_categorias');
-
-        // Verificar si el ancho de la pantalla es menor a 700 px
         if (screenWidth < 700) {
-            // Eliminar la clase "row" si está presente
             listaCategoriasElement.classList.remove('row');
         } else {
-            // Agregar la clase "row" si no está presente
             if (!listaCategoriasElement.classList.contains('row')) {
                 listaCategoriasElement.classList.add('row');
             }
         }
     }
-
-    // Llamar a la función cuando la página carga y después de 2 segundos
     setTimeout(() => {
         handleScreenSize();
     }, 2000);
 
-    // Llamar a la función cuando cambia el tamaño de la pantalla
     window.addEventListener('resize', handleScreenSize);
 });
