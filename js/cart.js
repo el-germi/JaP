@@ -74,9 +74,7 @@ function MostrarDataProductos() {
             </div>
         </div>
         <hr class=""></hr>`
-        // por que no una tabla? con bootstrap deve haber algo que la haga medio cheta
-        // ahí pude !!! pero con css común, voy a chequear lo de la tabla pero por ahora lo dejo así
-    }
+
 }
 
 function del(i) {
