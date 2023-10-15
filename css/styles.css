@@ -548,3 +548,7 @@ body {
 .list-group{
     width: 100vw;
 }
+
+.fa-trash:hover{
+    cursor: pointer;
+}
