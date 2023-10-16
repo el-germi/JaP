@@ -1,3 +1,28 @@
+
+let btnSwitch = document.getElementById("switch");
+
+// Recupera el estado del modo oscuro desde el localStorage
+const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+// Aplica el modo oscuro si estaba activado
+if (isDarkMode) {
+    document.body.classList.add("dark");
+    btnSwitch.classList.add("active");
+}
+
+// Agrega un evento de clic al botón
+btnSwitch.addEventListener("click", () => {
+    // Alterna la clase "dark" en el cuerpo del documento
+    document.body.classList.toggle("dark");
+
+    // Alterna la clase "active" en el propio botón
+    btnSwitch.classList.toggle("active");
+
+    // Guarda el estado actual del modo oscuro en el localStorage
+    const isDarkModeActive = document.body.classList.contains("dark");
+    localStorage.setItem("darkMode", isDarkModeActive);
+});
+
 let catID = localStorage.getItem("catID");
 
 let URL_Productos = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -32,7 +57,7 @@ function MostrarData(dataArray) {
     productos.innerHTML = "";
     for (const item of dataArray) {
         productos.innerHTML += `
-        <div class="cuadrante">
+        <div onclick="setProdID(${item.id})" id='${item.id}' class="cuadrante cursor-active">
           <img src="${item.image}">
           <div class="contenido">
             <h2>${item.name} ${item.currency} ${item.cost}</h2>
@@ -126,10 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("tituloProducto").innerHTML = nombre
     document.getElementById("tituloProducto2").innerHTML = nombre
-
 });
 
 function clean(arg) {
     //https://stackoverflow.com/questions/5700636/using-javascript-to-perform-text-matches-with-without-accented-characters
     return arg.normalize('NFKD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 }
+
+

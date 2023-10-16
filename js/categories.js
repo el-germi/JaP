@@ -141,3 +141,47 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+let btnSwitch = document.getElementById("switch");
+
+// Recupera el estado del modo oscuro desde el localStorage
+const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+// Aplica el modo oscuro si estaba activado
+if (isDarkMode) {
+  document.body.classList.add("dark");
+  btnSwitch.classList.add("active");
+}
+
+// Agrega un evento de clic al botón
+btnSwitch.addEventListener("click", () => {
+    // Alterna la clase "dark" en el cuerpo del documento
+    document.body.classList.toggle("dark");
+
+    // Alterna la clase "active" en el propio botón
+    btnSwitch.classList.toggle("active");
+
+    // Guarda el estado actual del modo oscuro en el localStorage
+    const isDarkModeActive = document.body.classList.contains("dark");
+    localStorage.setItem("darkMode", isDarkModeActive);
+});
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    function handleScreenSize() {
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth;
+        const listaCategoriasElement = document.getElementById('lista_categorias');
+        if (screenWidth < 700) {
+            listaCategoriasElement.classList.remove('row');
+        } else {
+            if (!listaCategoriasElement.classList.contains('row')) {
+                listaCategoriasElement.classList.add('row');
+            }
+        }
+    }
+    setTimeout(() => {
+        handleScreenSize();
+    }, 2000);
+
+    window.addEventListener('resize', handleScreenSize);
+});
