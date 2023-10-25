@@ -115,11 +115,84 @@
                                               </div>
                         
                                                 <hr class="my-4">
+
                                                 <div class="d-flex justify-content-between mb-4">
-                                                    <h5>Total con envío:</h5>
+                                                    <h5>Costos:</h5>
                                                     <h5 id="total"></h5>
                                                 </div>
-                                            <button type="button" class="btn btn-block btn-primary">Realizar compra</button>
+
+                                                <hr class="my-4">
+
+                                                <h5>Forma de Pago:</h5>
+                                                <button class="btn btn-secondary mt-2 mb-4" id="formaPago" data-bs-toggle="modal" data-bs-target="#modal">
+                                                    Seleccionar métodos de pago
+                                                  </button>
+
+                                                  <div class="modal fade" id="modal" tabindex="-1">
+                                                    <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="modalLabel">Métodos de pago</h5>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                          <form class="mt-2">
+                                                            <div class="form-check">
+                                                              <input type="checkbox" class="form-check-input" id="tarjeta"/>
+                                                              <label class="form-check-label" for="tarjeta">
+                                                                Tarjeta de crédito
+                                                              </label>
+                                                            </div>
+                            
+                            
+                                                            <div class="form-floating mb-2 mt-4">
+                                                              <input type="number" id="numeroTarjeta" class="form-control" placeholder="Número de tarjeta" required />
+                                                              <label class="form-label" for="numeroTarjeta">Número de tarjeta</label>
+                                                            </div>
+                            
+                                                            <div class="row mb-4">
+                                                              <div class="col-md-6">
+                                                                <div class="form-floating mb-2 mt-2">
+                                                                  <input type="text" id="vencimiento" class="form-control" placeholder="MM/AA" required/>
+                                                                  <label class="form-label" for="vencimiento">Vencimiento (MM/AA)</label>
+                                                                </div>
+                                                              </div>
+                                                              <div class="col-md-6">
+                                                                <div class="form-floating mb-2 mt-2">
+                                                                  <input type="text" id="codigoSeguridad" class="form-control" placeholder="Código de seguridad" required />
+                                                                  <label class="form-label" for="codigoSeguridad">Código de seguridad</label>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                            
+                            
+                                                            <div class="form-check">
+                                                              <input type="checkbox" class="form-check-input" id="transferencia">
+                                                              <label class="form-check-label" for="transferencia">
+                                                                Transferencia bancaria
+                                                              </label>  
+                                                            </div>
+                                                            <div class="form-floating mb-2 mt-4">
+                                                              <input type="number" id="numeroCuenta" class="form-control" placeholder="Número de cuenta" required />
+                                                              <label class="form-label" for="numeroCuenta">Número de cuenta</label>
+                                                            </div>
+                            
+                                                          </form>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                          <button class="btn btn-success" id="guardarBoton" data-bs-dismiss="modal">Guardar</button>
+                                                        </div>
+
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                            <br>
+                                            <div class="d-grid gap-2 col-6 mx-auto">
+                                                <button class="btn btn-primary mt-4" type="button">Realizar compra</button>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
