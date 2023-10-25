@@ -60,7 +60,7 @@
         </div>
     </nav>
     <main>
-        <section>
+        <section class="need-validation" id="Seccion-datos">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12">
@@ -89,28 +89,41 @@
                         
                                               <h5 class="mb-3">Tipo de envío:</h5>
                         
-                                              <div class="mb-4 pb-2">
-                                                <select class="form-control">
+                                              <div class="mb-4 pb-2 ">
+                                                <select class="form-control form-select" required >
+                                                <option value=""></option>
                                                   <option value="1">Premium - 2 a 5 días (15%)</option>
                                                   <option value="2">Express - 5 a 8 días (7%)</option>
                                                   <option value="3">Standard - 12 a 15 días (5%)</option>
+                                                  <div class="invalid-feedback">Seleccione uno o no te mando nada</div>
                                                 </select>
+                                              
+                                            </div>
                                               </div>
                         
                                               <h5 class="mb-3">Direccion de envío:</h5>
                         
                                               <div class="mb-5">
                                                 <div class="form-floating mb-2">
-                                                  <input type="text" class="form-control" id="calle" placeholder="Calle">
+                                                  <input type="text" class="form-control" id="calle" placeholder="Calle" required>
                                                   <label for="text">Calle</label>
+                                                  <div class="invalid-feedback">
+                                                    Ingrese una calle.
+                                                  </div>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                  <input type="number" class="form-control" id="calle-numero" placeholder="numero">
+                                                  <input type="number" class="form-control" id="calle-numero" placeholder="numero" required>
                                                   <label for="number">Numero</label>
+                                                  <div class="invalid-feedback">
+                                                    Ingrese un numero.
+                                                  </div>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                  <input type="text" class="form-control" id="esquina" placeholder="esquina">
+                                                  <input type="text" class="form-control" id="esquina" placeholder="esquina" required>
                                                   <label for="text">Esquina</label>
+                                                  <div class="invalid-feedback">
+                                                    Ingrese una esquina.
+                                                  </div>
                                                 </div>
                                               </div>
                         
@@ -191,7 +204,7 @@
 
                                             <br>
                                             <div class="d-grid gap-2 col-6 mx-auto">
-                                                <button class="btn btn-primary mt-4" type="button">Realizar compra</button>
+                                                <button class="btn btn-primary mt-4" type="submit" id="BotonCompra">Realizar compra</button>
                                               </div>
                                         </div>
                                     </div>
@@ -201,6 +214,8 @@
                     </div>
                 </div>
             </div>
+
+
         </section>
         <footer class="text-muted">
             <div class="container">

@@ -184,3 +184,26 @@ document.getElementById("tarjeta").addEventListener("click", () => {
 document.getElementById("transferencia").addEventListener("click", () => {
     deshabilitar()
 })
+
+
+
+  
+ let BotonCompra = document.getElementById("BotonCompra")
+
+ BotonCompra.addEventListener("click", 
+
+    function validarFormulario() {
+       
+    document.getElementById("Seccion-datos")
+       let camposRequeridos = formulario.querySelectorAll('[required]');
+       camposRequeridos.forEach(function(campo) {
+        if (!campo.value) {
+          alert("Por favor, complete todos los campos requeridos.");
+        }
+      });
+    
+      } 
+
+
+
+ )

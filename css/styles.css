@@ -552,3 +552,7 @@ body {
 .fa-trash:hover{
     cursor: pointer;
 }
+
+.form-control:invalid{
+   border-color: red;
+}
