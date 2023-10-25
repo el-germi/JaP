@@ -104,8 +104,23 @@ function updateVal(i) {
 
 // FUNCIONALIDAD TOTAL
 function actualizarTotal() {
-    let total = document.getElementById("total");
-    let pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
+    const subtotal = document.getElementById("subtotal");
+    const envio = document.getElementById("envio");
+    const total = document.getElementById("total");
+    const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
+
+    const opt15 = document.getElementById("opt15");
+    const opt7 = document.getElementById("opt7");
+    const opt5 = document.getElementById("opt5");
+
+    const shipping = document.getElementById("shipping");
+    let fee = 0;
+    if (shipping.children[shipping.selectedIndex] == opt15)
+        fee = .15;
+    if (shipping.children[shipping.selectedIndex] == opt7)
+        fee = .07;
+    if (shipping.children[shipping.selectedIndex] == opt5)
+        fee = .05;
 
     let totalUyu = 0;
     let totalUsd = 0;
@@ -119,20 +134,24 @@ function actualizarTotal() {
     });
 
     if (pesosSwitch.checked) //true = USD
-        if (totalUyu > 0)
-            convert("UYU", "USD", totalUyu).then(s => total.innerHTML = (totalUsd + s.result).toFixed(2));
-        else
-            total.innerHTML = totalUsd;
+        subtotal.innerHTML = totalUsd + uyuToUsd * totalUyu;
     else
-        if (totalUsd > 0)
-            convert("USD", "UYU", totalUsd).then(s => total.innerHTML = (totalUyu + s.result).toFixed(0));
-        else
-            total.innerHTML = totalUyu;
+        subtotal.innerHTML = totalUyu + usdToUyu * totalUsd;
+    subtotal.innerHTML = Number(subtotal.innerHTML).toFixed(pesosSwitch.checked ? 2 : 0);
+    envio.innerHTML = (subtotal.innerHTML * fee).toFixed(pesosSwitch.checked ? 2 : 0);
+    total.innerHTML = (Number(subtotal.innerHTML) + Number(envio.innerHTML)).toFixed(pesosSwitch.checked ? 2 : 0);
 }
 
+let uyuToUsd = 1 / 40;
+let usdToUyu = 40;
+
 document.addEventListener("DOMContentLoaded", () => {
-    let pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
-    let currency = document.getElementById("currency");
+    convert("UYU", "USD", 1).then(s => uyuToUsd = s.result);//en vez de llamar la api cada vez, llamarla una
+    convert("USD", "UYU", 1).then(s => usdToUyu = s.result);//vez al comienzo con 1 y multiplicar a mano
+
+    const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
+    const currency = document.getElementById("currency");
+    const shipping = document.getElementById("shipping");
 
     pesosSwitch.checked = false;
     pesosSwitch.addEventListener("click", () => {
@@ -142,6 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currency.innerHTML = "UYU";
         actualizarTotal();
     });
+    shipping.addEventListener("input", () => {
+        actualizarTotal();
+    })
 });
 
 function convert(from, to, amount) {
@@ -159,7 +181,7 @@ function convert(from, to, amount) {
 // --------------------------------------- 
 
 
-function deshabilitar(){
+function deshabilitar() {
     const tarjeta = document.getElementById("tarjeta");
     const transferencia = document.getElementById("transferencia");
     const numeroTarjeta = document.getElementById("numeroTarjeta");
@@ -190,18 +212,24 @@ document.getElementById("transferencia").addEventListener("click", () => {
   
  let BotonCompra = document.getElementById("BotonCompra")
 
- BotonCompra.addEventListener("click", 
-
-    function validarFormulario() {
+ BotonCompra.addEventListener("click", ()=>{
        
-    document.getElementById("Seccion-datos")
+  let formulario=  document.getElementById("Seccion-datos")
        let camposRequeridos = formulario.querySelectorAll('[required]');
+       let banderita
        camposRequeridos.forEach(function(campo) {
         if (!campo.value) {
-          alert("Por favor, complete todos los campos requeridos.");
+        banderita = true
         }
       });
-    
+    if(banderita===true){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Complete los espacios en rojo!',
+           
+          })
+    }
       } 
 
 
