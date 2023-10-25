@@ -77,8 +77,6 @@ function MostrarDataProductos() {
             </div>
             <hr id="hr${i}"/>
         `
-        // por que no una tabla? con bootstrap deve haber algo que la haga medio cheta
-        // ahí pude !!! pero con css común, voy a chequear lo de la tabla pero por ahora lo dejo así
     }
 }
 
@@ -156,3 +154,33 @@ function convert(from, to, amount) {
         headers: myHeaders
     }).then(response => response.json());
 }
+
+
+// --------------------------------------- 
+
+
+function deshabilitar(){
+    const tarjeta = document.getElementById("tarjeta");
+    const transferencia = document.getElementById("transferencia");
+    const numeroTarjeta = document.getElementById("numeroTarjeta");
+    const vencimiento = document.getElementById("vencimiento");
+    const codigoSeguridad = document.getElementById("codigoSeguridad");
+    const numeroCuenta = document.getElementById("numeroCuenta");
+
+    numeroTarjeta.disabled = transferencia.checked;
+    vencimiento.disabled = transferencia.checked;
+    codigoSeguridad.disabled = transferencia.checked;
+    tarjeta.disabled = transferencia.checked;
+
+    numeroCuenta.disabled = tarjeta.checked;
+    transferencia.disabled = tarjeta.checked;
+}
+
+
+document.getElementById("tarjeta").addEventListener("click", () => {
+    deshabilitar()
+})
+
+document.getElementById("transferencia").addEventListener("click", () => {
+    deshabilitar()
+})
