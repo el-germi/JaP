@@ -553,7 +553,7 @@ body {
     cursor: pointer;
 }
 
-.form-control:invalid{
+.is-invalid{
    border-color: red;
    border-width: 3px;
 }

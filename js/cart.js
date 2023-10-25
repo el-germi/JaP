@@ -208,38 +208,34 @@ document.getElementById("transferencia").addEventListener("click", () => {
 })
 
 
+ document.getElementById("BotonCompra").addEventListener("click", function(event) {
+    var camposRequeridos = document.querySelectorAll("[required]");
+    var camposVacios = false;
 
-  
- let BotonCompra = document.getElementById("BotonCompra")
-
- BotonCompra.addEventListener("click", (e)=>{
-       e.preventDefault();
-  let formulario=  document.getElementById("Seccion-datos")
-       let camposRequeridos = formulario.querySelectorAll('[required]');
-       let banderita
-       camposRequeridos.forEach(function(campo) {
-        if (!campo.value) {
-        banderita = true
+    camposRequeridos.forEach(function(campo) {
+        if (campo.value.trim() === "") {
+            camposVacios = true;
+            campo.classList.add("is-invalid");
+        } else {
+            campo.classList.remove("is-invalid");
         }
-      });
-    if(banderita===true){
+    });
+
+    if (camposVacios) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Complete los espacios en rojo!',
-           
           })
-    }else{
+    } else {
+    
+        document.getElementById("Seccion-datos").submit();
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Compra exitosa',
-            showConfirmButton: false,
-            timer: 1500
+            con: 'success',
+            title: 'Compra exitosa'
           })
     }
-      } 
-
-
-
- )
+    
+    event.stopPropagation();
+    event.preventDefault();
+});
