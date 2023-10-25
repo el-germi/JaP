@@ -212,8 +212,8 @@ document.getElementById("transferencia").addEventListener("click", () => {
   
  let BotonCompra = document.getElementById("BotonCompra")
 
- BotonCompra.addEventListener("click", ()=>{
-       
+ BotonCompra.addEventListener("click", (e)=>{
+       e.preventDefault();
   let formulario=  document.getElementById("Seccion-datos")
        let camposRequeridos = formulario.querySelectorAll('[required]');
        let banderita
@@ -228,6 +228,14 @@ document.getElementById("transferencia").addEventListener("click", () => {
             title: 'Oops...',
             text: 'Complete los espacios en rojo!',
            
+          })
+    }else{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Compra exitosa',
+            showConfirmButton: false,
+            timer: 1500
           })
     }
       } 
