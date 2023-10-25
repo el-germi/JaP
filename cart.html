@@ -45,7 +45,10 @@
                                 <a class="dropdown-item" href="my-profile.html"><i class="fa-solid fa-user"></i> Mi
                                     perfil</a>
                             </li>
-                            <li><div class="botones_dark"><button class="switch" id="switch"> <i></i> <i></i></button></div></li>
+                            <li>
+                                <div class="botones_dark"><button class="switch" id="switch"> <i></i> <i></i></button>
+                                </div>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -75,10 +78,14 @@
                                             </div>
                                             <div class="my-2" id="productos"></div>
                                             <div>
-                                                <div>total: $<b id="total">99999</b></div>
+                                                <div>SubTotal: $<b id="subtotal"></b></div>
+                                                <div>Envio: $<b id="envio"></b></div>
+                                                <div>Total: $<b id="total"></b></div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="pesosSwitch">
-                                                    <label class="form-check-label" for="pesosSwitch" id="currency">UYU</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="pesosSwitch">
+                                                    <label class="form-check-label" for="pesosSwitch"
+                                                        id="currency">UYU</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -86,34 +93,37 @@
                                     <div class="row">
                                         <div class="row-lg-4">
                                             <div class="p-5">
-                        
-                                              <h5 class="mb-3">Tipo de envío:</h5>
-                        
-                                              <div class="mb-4 pb-2">
-                                                <select class="form-control">
-                                                  <option value="1">Premium - 2 a 5 días (15%)</option>
-                                                  <option value="2">Express - 5 a 8 días (7%)</option>
-                                                  <option value="3">Standard - 12 a 15 días (5%)</option>
-                                                </select>
-                                              </div>
-                        
-                                              <h5 class="mb-3">Direccion de envío:</h5>
-                        
-                                              <div class="mb-5">
-                                                <div class="form-floating mb-2">
-                                                  <input type="text" class="form-control" id="calle" placeholder="Calle">
-                                                  <label for="text">Calle</label>
+                                                <h5 class="mb-3">Tipo de envío:</h5>
+
+                                                <div class="mb-4 pb-2">
+                                                    <select class="form-control" id="shipping">
+                                                        <option value="1" id="opt15">Premium - 2 a 5 días (15%)</option>
+                                                        <option value="2" id="opt7">Express - 5 a 8 días (7%)</option>
+                                                        <option value="3" id="opt5">Standard - 12 a 15 días (5%)
+                                                        </option>
+                                                    </select>
                                                 </div>
-                                                <div class="form-floating mb-2">
-                                                  <input type="number" class="form-control" id="calle-numero" placeholder="numero">
-                                                  <label for="number">Numero</label>
+
+                                                <h5 class="mb-3">Direccion de envío:</h5>
+
+                                                <div class="mb-5">
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" id="calle"
+                                                            placeholder="Calle">
+                                                        <label for="text">Calle</label>
+                                                    </div>
+                                                    <div class="form-floating mb-2">
+                                                        <input type="number" class="form-control" id="calle-numero"
+                                                            placeholder="numero">
+                                                        <label for="number">Numero</label>
+                                                    </div>
+                                                    <div class="form-floating mb-2">
+                                                        <input type="text" class="form-control" id="esquina"
+                                                            placeholder="esquina">
+                                                        <label for="text">Esquina</label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-floating mb-2">
-                                                  <input type="text" class="form-control" id="esquina" placeholder="esquina">
-                                                  <label for="text">Esquina</label>
-                                                </div>
-                                              </div>
-                        
+
                                                 <hr class="my-4">
 
                                                 <div class="d-flex justify-content-between mb-4">
@@ -124,75 +134,99 @@
                                                 <hr class="my-4">
 
                                                 <h5>Forma de Pago:</h5>
-                                                <button class="btn btn-secondary mt-2 mb-4" id="formaPago" data-bs-toggle="modal" data-bs-target="#modal">
+                                                <button class="btn btn-secondary mt-2 mb-4" id="formaPago"
+                                                    data-bs-toggle="modal" data-bs-target="#modal">
                                                     Seleccionar métodos de pago
-                                                  </button>
+                                                </button>
 
-                                                  <div class="modal fade" id="modal" tabindex="-1">
+                                                <div class="modal fade" id="modal" tabindex="-1">
                                                     <div class="modal-dialog">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="modalLabel">Métodos de pago</h5>
-                                                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                        </div>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalLabel">Métodos de pago
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"></button>
+                                                            </div>
 
-                                                        <div class="modal-body">
-                                                          <form class="mt-2">
-                                                            <div class="form-check">
-                                                              <input type="checkbox" class="form-check-input" id="tarjeta"/>
-                                                              <label class="form-check-label" for="tarjeta">
-                                                                Tarjeta de crédito
-                                                              </label>
-                                                            </div>
-                            
-                            
-                                                            <div class="form-floating mb-2 mt-4">
-                                                              <input type="number" id="numeroTarjeta" class="form-control" placeholder="Número de tarjeta" required />
-                                                              <label class="form-label" for="numeroTarjeta">Número de tarjeta</label>
-                                                            </div>
-                            
-                                                            <div class="row mb-4">
-                                                              <div class="col-md-6">
-                                                                <div class="form-floating mb-2 mt-2">
-                                                                  <input type="text" id="vencimiento" class="form-control" placeholder="MM/AA" required/>
-                                                                  <label class="form-label" for="vencimiento">Vencimiento (MM/AA)</label>
-                                                                </div>
-                                                              </div>
-                                                              <div class="col-md-6">
-                                                                <div class="form-floating mb-2 mt-2">
-                                                                  <input type="text" id="codigoSeguridad" class="form-control" placeholder="Código de seguridad" required />
-                                                                  <label class="form-label" for="codigoSeguridad">Código de seguridad</label>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                            
-                            
-                                                            <div class="form-check">
-                                                              <input type="checkbox" class="form-check-input" id="transferencia">
-                                                              <label class="form-check-label" for="transferencia">
-                                                                Transferencia bancaria
-                                                              </label>  
-                                                            </div>
-                                                            <div class="form-floating mb-2 mt-4">
-                                                              <input type="number" id="numeroCuenta" class="form-control" placeholder="Número de cuenta" required />
-                                                              <label class="form-label" for="numeroCuenta">Número de cuenta</label>
-                                                            </div>
-                            
-                                                          </form>
-                                                        </div>
+                                                            <div class="modal-body">
+                                                                <form class="mt-2">
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            id="tarjeta" />
+                                                                        <label class="form-check-label" for="tarjeta">
+                                                                            Tarjeta de crédito
+                                                                        </label>
+                                                                    </div>
 
-                                                        <div class="modal-footer">
-                                                          <button class="btn btn-success" id="guardarBoton" data-bs-dismiss="modal">Guardar</button>
-                                                        </div>
 
-                                                      </div>
+                                                                    <div class="form-floating mb-2 mt-4">
+                                                                        <input type="number" id="numeroTarjeta"
+                                                                            class="form-control"
+                                                                            placeholder="Número de tarjeta" required />
+                                                                        <label class="form-label"
+                                                                            for="numeroTarjeta">Número de
+                                                                            tarjeta</label>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-floating mb-2 mt-2">
+                                                                                <input type="text" id="vencimiento"
+                                                                                    class="form-control"
+                                                                                    placeholder="MM/AA" required />
+                                                                                <label class="form-label"
+                                                                                    for="vencimiento">Vencimiento
+                                                                                    (MM/AA)</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-floating mb-2 mt-2">
+                                                                                <input type="text" id="codigoSeguridad"
+                                                                                    class="form-control"
+                                                                                    placeholder="Código de seguridad"
+                                                                                    required />
+                                                                                <label class="form-label"
+                                                                                    for="codigoSeguridad">Código de
+                                                                                    seguridad</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            id="transferencia">
+                                                                        <label class="form-check-label"
+                                                                            for="transferencia">
+                                                                            Transferencia bancaria
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-floating mb-2 mt-4">
+                                                                        <input type="number" id="numeroCuenta"
+                                                                            class="form-control"
+                                                                            placeholder="Número de cuenta" required />
+                                                                        <label class="form-label"
+                                                                            for="numeroCuenta">Número de cuenta</label>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-success" id="guardarBoton"
+                                                                    data-bs-dismiss="modal">Guardar</button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                  </div>
+                                                </div>
 
-                                            <br>
-                                            <div class="d-grid gap-2 col-6 mx-auto">
-                                                <button class="btn btn-primary mt-4" type="button">Comprar</button>
-                                              </div>
+                                                <br>
+                                                <div class="d-grid gap-2 col-6 mx-auto">
+                                                    <button class="btn btn-primary mt-4" type="button">Comprar</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +234,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         <footer class="text-muted">
             <div class="container">
