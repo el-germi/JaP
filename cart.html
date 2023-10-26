@@ -65,7 +65,7 @@
     </nav>
     <main>
         <section >
-            <form class="need-validation" id="Seccion-datos">
+        <form class="need-validation" id="formCompra" novalidate>
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12">
@@ -141,18 +141,14 @@
 
                                                 <hr class="my-4">
 
-                                                <div class="d-flex justify-content-between mb-4">
-                                                    <h5>Costos:</h5>
-                                                    <h5 id="total"></h5>
-                                                </div>
-
-                                                <hr class="my-4">
-
                                                 <h5>Forma de Pago:</h5>
-                                                <button class="btn btn-secondary mt-2 mb-4" id="formaPago"
+                                                <button type="button" class="btn btn-secondary mt-2 mb-4" id="formaPago"
                                                     data-bs-toggle="modal" data-bs-target="#modal">
                                                     Seleccionar métodos de pago
                                                 </button>
+                                                <span class="invalid-feedback" id="feedback-formaPago">
+                                                   Seleccione una forma de pago.
+                                                </span>
 
                                                 <div class="modal fade" id="modal" tabindex="-1">
                                                     <div class="modal-dialog">
@@ -236,23 +232,21 @@
                                                                                 Ingrese un número de cuenta
                                                                               </div>
                                                                     </div>
-
-                                                                </form>
                                                             </div>
 
                                                             <div class="modal-footer">
-                                                                <button class="btn btn-success" id="guardarBoton"
+                                                                <button type="button" class="btn btn-success" id="guardarBoton"
                                                                     data-bs-dismiss="modal">Guardar</button>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
-                                              </form>
                                             <br>
                                             <div class="d-grid gap-2 col-6 mx-auto">
-                                                <button class="btn btn-primary mt-4" type="button" id="BotonCompra">Realizar compra</button>
-                                              </div>
+                                                <button class="btn btn-primary mt-4" type="submit" id="BotonCompra">
+                                                    Realizar compra
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

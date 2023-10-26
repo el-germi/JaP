@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function convert(from, to, amount) {
-    var myHeaders = new Headers();
-    myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d");
+    var myHeaders = new Headers(); 
+    myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d"); 
 
     return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, {
         method: 'GET',
@@ -182,6 +182,7 @@ function convert(from, to, amount) {
 
 
 function deshabilitar() {
+
     const tarjeta = document.getElementById("tarjeta");
     const transferencia = document.getElementById("transferencia");
     const numeroTarjeta = document.getElementById("numeroTarjeta");
@@ -199,43 +200,67 @@ function deshabilitar() {
 }
 
 
-document.getElementById("tarjeta").addEventListener("click", () => {
-    deshabilitar()
-})
+function validaciones() {
 
-document.getElementById("transferencia").addEventListener("click", () => {
-    deshabilitar()
-})
+    let transferencia = document.getElementById("transferencia");
+    let tarjeta = document.getElementById("tarjeta");
+    let resultado = true;
+
+    if (!tarjeta.checked && !transferencia.checked) { // si no se seleccionó ninguna forma de pago...
+        resultado = false; 
+        document.getElementById("formaPago").classList.replace("btn-secondary", "btn-outline-danger");
+        document.getElementById("feedback-formaPago").style.display = "inline";
+        
+    } else {
+        document.getElementById("formaPago").classList.replace("btn-outline-danger", "btn-secondary");
+        document.getElementById("feedback-formaPago").style.display = "none";
+    }
+
+    return resultado;
+}
 
 
- document.getElementById("BotonCompra").addEventListener("click", function(event) {
-    var camposRequeridos = document.querySelectorAll("[required]");
-    var camposVacios = false;
+document.addEventListener("DOMContentLoaded", () => {
 
-    camposRequeridos.forEach(function(campo) {
-        if (campo.value.trim() === "") {
-            camposVacios = true;
-            campo.classList.add("is-invalid");
+    document.getElementById("tarjeta").addEventListener("click", () => {
+        deshabilitar()
+    })
+
+    document.getElementById("transferencia").addEventListener("click", () => {
+        deshabilitar()
+    })
+
+    document.getElementById("guardarBoton").addEventListener("click", () => {
+        validaciones()
+    })
+
+    document.getElementById("formCompra").addEventListener("submit", e => {
+        e.preventDefault(); 
+    
+        const isValid = validaciones() && formCompra.checkValidity(); // condición
+        // checkValidity devuelve true si el formulario es válido:
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
+    
+        if(!isValid){
+            e.stopPropagation(); // Evita que se propague el evento submit
+            Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Complete los espacios en rojo!',
+                    })
         } else {
-            campo.classList.remove("is-invalid");
+            setTimeout( () => {
+                document.getElementById("formCompra").submit(); 
+                document.location.reload(); 
+            }, 3000)
+            Swal.fire({
+                    con: 'success',
+                    title: 'Compra exitosa'
+                })
         }
+    
+        formCompra.classList.add('was-validated'); // Agrega clases de validación Bootstrap
     });
 
-    if (camposVacios) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Complete los espacios en rojo!',
-          })
-    } else {
-    
-        document.getElementById("Seccion-datos").submit();
-        Swal.fire({
-            con: 'success',
-            title: 'Compra exitosa'
-          })
-    }
-    
-    event.stopPropagation();
-    event.preventDefault();
-});
+})
+
