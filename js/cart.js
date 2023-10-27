@@ -103,17 +103,18 @@ function updateVal(i) {
 }
 
 // FUNCIONALIDAD TOTAL
+const subtotal = document.getElementById("subtotal");
+const envio = document.getElementById("envio");
+const total = document.getElementById("total");
+const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
+const currency = document.getElementById("currency");
+
+const shipping = document.getElementById("shipping");
+const opt15 = document.getElementById("opt15");
+const opt7 = document.getElementById("opt7");
+const opt5 = document.getElementById("opt5");
+
 function actualizarTotal() {
-    const subtotal = document.getElementById("subtotal");
-    const envio = document.getElementById("envio");
-    const total = document.getElementById("total");
-    const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
-
-    const opt15 = document.getElementById("opt15");
-    const opt7 = document.getElementById("opt7");
-    const opt5 = document.getElementById("opt5");
-
-    const shipping = document.getElementById("shipping");
     let fee = 0;
     if (shipping.children[shipping.selectedIndex] == opt15)
         fee = .15;
@@ -122,8 +123,7 @@ function actualizarTotal() {
     if (shipping.children[shipping.selectedIndex] == opt5)
         fee = .05;
 
-    let totalUyu = 0;
-    let totalUsd = 0;
+    let totalUyu = 0, totalUsd = 0;
     let cartInfo = JSON.parse(localStorage.getItem("prodsCarrito")) || [];
 
     cartInfo.forEach(e => {
@@ -137,18 +137,16 @@ function actualizarTotal() {
         subtotal.innerHTML = totalUsd + uyuToUsd * totalUyu;
     else
         subtotal.innerHTML = totalUyu + usdToUyu * totalUsd;
+
     subtotal.innerHTML = Number(subtotal.innerHTML).toFixed(pesosSwitch.checked ? 2 : 0);
     envio.innerHTML = (subtotal.innerHTML * fee).toFixed(pesosSwitch.checked ? 2 : 0);
     total.innerHTML = (Number(subtotal.innerHTML) + Number(envio.innerHTML)).toFixed(pesosSwitch.checked ? 2 : 0);
 }
 
-let uyuToUsd = 1 / 40;//aproximaciones, mentras carga la API
-let usdToUyu = 40;//aproximaciones, mentras carga la API
+let uyuToUsd = 1 / 40;//aproximaciones, mientras carga la API
+let usdToUyu = 40;//aproximaciones, mientras carga la API
 
 document.addEventListener("DOMContentLoaded", () => {
-    const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
-    const currency = document.getElementById("currency");
-    const shipping = document.getElementById("shipping");
     pesosSwitch.checked = false;
 
     //en vez de llamar la api cada vez, llamarla una para obtener el factor de cambio y hacer la multiplicacion en js
