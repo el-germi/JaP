@@ -142,18 +142,27 @@ function actualizarTotal() {
     total.innerHTML = (Number(subtotal.innerHTML) + Number(envio.innerHTML)).toFixed(pesosSwitch.checked ? 2 : 0);
 }
 
-let uyuToUsd = 1 / 40;
-let usdToUyu = 40;
+let uyuToUsd = 1 / 40;//aproximaciones, mentras carga la API
+let usdToUyu = 40;//aproximaciones, mentras carga la API
 
 document.addEventListener("DOMContentLoaded", () => {
-    convert("UYU", "USD", 1).then(s => uyuToUsd = s.result);//en vez de llamar la api cada vez, llamarla una
-    convert("USD", "UYU", 1).then(s => usdToUyu = s.result);//vez al comienzo con 1 y multiplicar a mano
-
     const pesosSwitch = document.getElementById("pesosSwitch"); //true = USD
     const currency = document.getElementById("currency");
     const shipping = document.getElementById("shipping");
-
     pesosSwitch.checked = false;
+
+    //en vez de llamar la api cada vez, llamarla una para obtener el factor de cambio y hacer la multiplicacion en js
+    convert("UYU", "USD", 1).then(s => {
+        uyuToUsd = s.result;
+        if (pesosSwitch.checked)
+            actualizarTotal();
+    });
+    convert("USD", "UYU", 1).then(s => {
+        usdToUyu = s.result;
+        if (!pesosSwitch.checked)
+            actualizarTotal();
+    });
+
     pesosSwitch.addEventListener("click", () => {
         if (pesosSwitch.checked) //true = USD
             currency.innerHTML = "USD";
@@ -166,19 +175,31 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 });
 
+//convertir con rapidApi
 function convert(from, to, amount) {
-    var myHeaders = new Headers(); 
-    myHeaders.append("apikey", "L87u6fDedIWJx4VjZusOC8tOscbETQ8d"); 
+    return fetch(`https://currency-exchange.p.rapidapi.com/exchange?to=${to}&from=${from}&q=${amount}`, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+            'X-RapidAPI-Key': 'f99a82174amsha93c523bc058623p1daae9jsnb888b861843a',
+            'X-RapidAPI-Host': 'currency-exchange.p.rapidapi.com'
+        }
+    }).then(res => res.text())
+        .then(res => new Promise((yes, no) => yes({ result: res })));//convertir respuesta a Json para ser intercambiable con la de apiLayer
+}
 
+/* nos quedamos sin requests para apilayer
+function convert(from, to, amount) {
     return fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, {
         method: 'GET',
         redirect: 'follow',
-        headers: myHeaders
+        headers: {
+            'apikey': 'L87u6fDedIWJx4VjZusOC8tOscbETQ8d'
+        }
     }).then(response => response.json());
-}
+}*/
 
-
-// --------------------------------------- 
+// FIN TOTAL--------------------------------------- 
 
 
 function deshabilitar() {
@@ -207,10 +228,10 @@ function validaciones() {
     let resultado = true;
 
     if (!tarjeta.checked && !transferencia.checked) { // si no se seleccionó ninguna forma de pago...
-        resultado = false; 
+        resultado = false;
         document.getElementById("formaPago").classList.replace("btn-secondary", "btn-outline-danger");
         document.getElementById("feedback-formaPago").style.display = "inline";
-        
+
     } else {
         document.getElementById("formaPago").classList.replace("btn-outline-danger", "btn-secondary");
         document.getElementById("feedback-formaPago").style.display = "none";
@@ -235,30 +256,30 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     document.getElementById("formCompra").addEventListener("submit", e => {
-        e.preventDefault(); 
-    
+        e.preventDefault();
+
         const isValid = validaciones() && formCompra.checkValidity(); // condición
         // checkValidity devuelve true si el formulario es válido:
         // https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
-    
-        if(!isValid){
+
+        if (!isValid) {
             e.stopPropagation(); // Evita que se propague el evento submit
             Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Complete los espacios en rojo!',
-                    })
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Complete los espacios en rojo!',
+            })
         } else {
-            setTimeout( () => {
-                document.getElementById("formCompra").submit(); 
-                document.location.reload(); 
+            setTimeout(() => {
+                document.getElementById("formCompra").submit();
+                document.location.reload();
             }, 3000)
             Swal.fire({
-                    con: 'success',
-                    title: 'Compra exitosa'
-                })
+                con: 'success',
+                title: 'Compra exitosa'
+            })
         }
-    
+
         formCompra.classList.add('was-validated'); // Agrega clases de validación Bootstrap
     });
 
