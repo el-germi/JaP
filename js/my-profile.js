@@ -21,3 +21,10 @@ btnSwitch.addEventListener("click", () => {
     const isDarkModeActive = document.body.classList.contains("dark");
     localStorage.setItem("darkMode", isDarkModeActive);
 });
+
+//funcion para obtener email de localstorage
+
+ const datoRecuperado = localStorage.getItem("email");
+        if (datoRecuperado) {
+            document.getElementById("email").value = datoRecuperado;
+        }

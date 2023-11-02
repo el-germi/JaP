@@ -71,10 +71,25 @@
         </div>
     </nav>
     <main>
+        
         <div class="container">
-            <div class="alert alert-danger text-center" role="alert">
-                <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-            </div>
+            <div><h3>Perfil</h3></div>
+            <form id="form">
+                <label for = "nombre"></label> Nombre*:</label>
+                <input type = "text" id="nombre" required> 
+                <label for = "segundoNombre"></label> Segundo nombre:</label>
+                <input type = "text" id="segundoNombre">
+                <label for = "apellido"></label> Apellido*:</label>
+                <input type = "text" id="apellido" required> 
+                <label for = "segundo_apellido"></label> Segundo apellido:</label>
+                <input type = "text" id="segundo_apellido">
+                <label for = "email"></label> Email*:</label>
+                <input type = "text" id="email">
+                <label for = "telefono"></label> Telefono de contacto:</label>
+                <input type = "tel" id="telefono">
+                
+                <button type="button" onclick="guardarDatos()">Guardar Cambios</button>
+            </form>
         </div>
     </main>
     <footer class="text-muted">

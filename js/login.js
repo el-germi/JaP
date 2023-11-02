@@ -31,4 +31,8 @@ btnSwitch.addEventListener("click", ()=>{
 });
 
 
-
+//guardar email del usuario en localStorage
+function guardarDato() {
+    const email = document.getElementById("inputEmail").value;
+    localStorage.setItem("email", email);
+}
