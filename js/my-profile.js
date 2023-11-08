@@ -29,6 +29,8 @@ btnSwitch.addEventListener("click", () => {
             document.getElementById("email").value = datoRecuperado;
   }
 
+//funcion para cambiar foto de perfil
+
   function cambiarFotoDePerfil() {
     const inputElement = document.getElementById('formFileSm');
     const imageElement = document.getElementById('profile-image');
