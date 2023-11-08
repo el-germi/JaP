@@ -72,30 +72,15 @@
     </nav>
     <main>
        
-    <!--
-        <div class="container" >
-            <div class="flex"><h3>Perfil</h3></div>
-            <form id="form" class="form">
-                <label for = "nombre"></label> Nombre*:</label>
-                <input type = "text" id="nombre" class="input" required> 
-                <label for = "segundoNombre"></label> Segundo nombre:</label>
-                <input type = "text" id="segundoNombre" class="input">
-                <label for = "apellido"></label> Apellido*:</label>
-                <input type = "text" id="apellido" class="input" required> 
-                <label for = "segundo_apellido"></label> Segundo apellido:</label>
-                <input type = "text" id="segundo_apellido" class="input">
-                <label for = "email"></label> Email*:</label>
-                <input type = "text" id="email" class="input">
-                <label for = "telefono"></label> Telefono de contacto:</label>
-                <input type = "tel" id="telefono" class="input">
-                
-                <button type="button" onclick="guardarDatos()" class="submit">Guardar Cambios</button>
-            </form>
-        </div>
-    -->
+    <div>
     <form class="form">
-
+       
         <p class="title">Perfil </p>
+        <div class="imagen"><img src="img/img_perfil.png" style="width:5vw;" id="profile-image" alt=""></div>
+        <div class="mb-3">
+            <label for="formFileSm" class="form-label">Cambiar foto de perfil </label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file" accept="image/*" onchange="cambiarFotoDePerfil()">
+        </div>
         <p class="message">Completa tus datos personales.</p>
             <div class="flex">
             <label>
@@ -126,11 +111,15 @@
             <input required="" placeholder="Teléfono de contacto" type="tel" class="input">
            
         </label>
+        
+
         <p class="obligatorio">Los campos marcados con asterisco * son obligatorios. </p>
         <button class="submit" onclick="guardarDatos()">Guardar Cambios</button>
-
+        
+       
     </form>
-
+    
+</div>
     </main>
     <footer class="text-muted">
         <div class="container">

@@ -27,4 +27,30 @@ btnSwitch.addEventListener("click", () => {
  const datoRecuperado = localStorage.getItem("email");
         if (datoRecuperado) {
             document.getElementById("email").value = datoRecuperado;
-        }
+  }
+
+  function cambiarFotoDePerfil() {
+    const inputElement = document.getElementById('formFileSm');
+    const imageElement = document.getElementById('profile-image');
+  
+    if (inputElement.files && inputElement.files[0]) {
+      const reader = new FileReader();
+  
+      reader.onload = function (e) {
+        imageElement.src = e.target.result;
+  
+        localStorage.setItem('profileImage', e.target.result);
+      };
+  
+      reader.readAsDataURL(inputElement.files[0]);
+    }
+  }
+  
+  window.onload = function () {
+    const storedImage = localStorage.getItem('profileImage');
+    const imageElement = document.getElementById('profile-image');
+  
+    if (storedImage) {
+      imageElement.src = storedImage;
+    }
+  };
