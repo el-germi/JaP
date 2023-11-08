@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'mail': mail,
             'pass': pass
         };
-        
+
         if (mail.length > 0 && pass.length > 0) {
             try {
                 localStorage.setItem("user", JSON.stringify(session));
@@ -24,12 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     let btnSwitch = document.getElementById("switch");
 
-btnSwitch.addEventListener("click", ()=>{
-    document.body.classList.toggle("dark")
-    btnSwitch.classList.toggle("active")
-})
+    btnSwitch.addEventListener("click", () => {
+        document.body.classList.toggle("dark")
+        btnSwitch.classList.toggle("active")
+    })
 });
-
 
 //guardar email del usuario en localStorage
 function guardarDato() {
