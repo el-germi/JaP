@@ -58,14 +58,14 @@ function MostrarData(dataArray) {
     for (const item of dataArray) {
         productos.innerHTML += `
         <div onclick="setProdID(${item.id})" id='${item.id}' class="cuadrante cursor-active">
-          <img src="${item.image}">
-          <div class="contenido">
-            <h2>${item.name} ${item.currency} ${item.cost}</h2>
-            <p class="descripcion">${item.description}</p>
-          </div>
-          <div class="vendidos">
-            <span>${item.soldCount} vendidos</span>
-          </div>
+            <img src="${item.image}">
+            <div class="contenido">
+                <h2>${item.name} ${item.currency} ${item.cost}</h2>
+                <p class="descripcion">${item.description}</p>
+            </div>
+            <div class="vendidos">
+                <span>${item.soldCount} vendidos</span>
+            </div>
         </div>`;
     }
 }
@@ -95,17 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
     precioMin.value = "";
     precioMax.value = "";
 
-    document.getElementById("ordenarAscendente").addEventListener("click", function () {
+    document.getElementById("ordenarAscendente").addEventListener("click", () => {
         orden = (a, b) => a.cost - b.cost;
         recalcular();
     });
 
-    document.getElementById("ordenarDescendente").addEventListener("click", function () {
+    document.getElementById("ordenarDescendente").addEventListener("click", () => {
         orden = (a, b) => b.cost - a.cost;
         recalcular();
     });
 
-    document.getElementById("ordenarRelevancia").addEventListener("click", function () {
+    document.getElementById("ordenarRelevancia").addEventListener("click", () => {
         orden = (a, b) => b.soldCount - a.soldCount;
         recalcular();
     });
