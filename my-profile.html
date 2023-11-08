@@ -71,26 +71,66 @@
         </div>
     </nav>
     <main>
-        
-        <div class="container">
-            <div><h3>Perfil</h3></div>
-            <form id="form">
+       
+    <!--
+        <div class="container" >
+            <div class="flex"><h3>Perfil</h3></div>
+            <form id="form" class="form">
                 <label for = "nombre"></label> Nombre*:</label>
-                <input type = "text" id="nombre" required> 
+                <input type = "text" id="nombre" class="input" required> 
                 <label for = "segundoNombre"></label> Segundo nombre:</label>
-                <input type = "text" id="segundoNombre">
+                <input type = "text" id="segundoNombre" class="input">
                 <label for = "apellido"></label> Apellido*:</label>
-                <input type = "text" id="apellido" required> 
+                <input type = "text" id="apellido" class="input" required> 
                 <label for = "segundo_apellido"></label> Segundo apellido:</label>
-                <input type = "text" id="segundo_apellido">
+                <input type = "text" id="segundo_apellido" class="input">
                 <label for = "email"></label> Email*:</label>
-                <input type = "text" id="email">
+                <input type = "text" id="email" class="input">
                 <label for = "telefono"></label> Telefono de contacto:</label>
-                <input type = "tel" id="telefono">
+                <input type = "tel" id="telefono" class="input">
                 
-                <button type="button" onclick="guardarDatos()">Guardar Cambios</button>
+                <button type="button" onclick="guardarDatos()" class="submit">Guardar Cambios</button>
             </form>
         </div>
+    -->
+    <form class="form">
+
+        <p class="title">Perfil </p>
+        <p class="message">Completa tus datos personales.</p>
+            <div class="flex">
+            <label>
+                <input required="" placeholder="Nombre*" type="text" class="input">
+                
+            </label>
+    
+            <label>
+                <input placeholder="Segundo nombre" type="text" class="input">
+                
+            </label>
+        </div>  
+                
+        <label>
+            <input required="" placeholder="Apellido*" type="text" class="input">
+            
+        </label> 
+            
+        <label>
+            <input placeholder="Segundo apellido" type="text" class="input">
+            
+        </label>
+        <label>
+            <input required="" placeholder="Email*" type="email" class="input" id="email">
+            
+        </label>
+        <label>
+            <input required="" placeholder="Teléfono de contacto" type="tel" class="input">
+           
+        </label>
+        <p class="obligatorio">Los campos marcados con asterisco * son obligatorios. </p>
+        <button class="submit" onclick="guardarDatos()">Guardar Cambios</button>
+
+    </form>
+
     </main>
     <footer class="text-muted">
         <div class="container">
