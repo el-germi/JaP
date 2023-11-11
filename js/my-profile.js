@@ -104,7 +104,7 @@ function validarCampos() {
     return true;
 }
 
-
+// al apretar el boton de guardar cambios, se guardan los valores de cada input en el local storage
 const botonPerfil = document.getElementById("BotonPerfil")
 botonPerfil.addEventListener("click", ()=>{
 
@@ -124,7 +124,7 @@ botonPerfil.addEventListener("click", ()=>{
            })
  })
 
-
+//al cargar la pagina si hay datos previamente cargados en el local storage estos se cargan en los inputs en su debido campo
  window.addEventListener("load", function () {
   const datosGuardados = localStorage.getItem("datosUsuario");
   if (datosGuardados) {
@@ -133,7 +133,8 @@ botonPerfil.addEventListener("click", ()=>{
       campos.forEach(campo => {
           campo.value = datosUsuario[campo.id] || '';
           
-          // Deshabilitar campos que tienen datos cargados
+          // Deshabilitar campos que tienen datos cargados,  y deshabilitamos los inputs para que no se pueda escribir en ellos
+          // luego quitamos el texto span de los inputs para que no se suporpongan a los datos
           if (campo.value.trim() !== '') {
               campo.setAttribute('disabled', true);
               const spans = document.querySelectorAll(".input + span");
