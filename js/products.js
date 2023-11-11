@@ -68,7 +68,7 @@ function MostrarData(dataArray) {
             </div>
         </div>`;
     }
-}
+} 
 
 function CambioPrecio() {
     const min = parseFloat(precioMin.value);
