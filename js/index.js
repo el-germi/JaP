@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
+/*
 let btnSwitch = document.getElementById("switch");
 
 // Recupera el estado del modo oscuro desde el localStorage
@@ -44,3 +44,4 @@ btnSwitch.addEventListener("click", () => {
     const isDarkModeActive = document.body.classList.contains("dark");
     localStorage.setItem("darkMode", isDarkModeActive);
 });
+*/
