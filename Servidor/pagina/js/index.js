@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /////////// usuario y permanencia
-    if (!localStorage.getItem("user")) {
+    if (!localStorage.getItem("email")) {
         window.location = "./login.html"
     } else {
-        document.title = JSON.parse(localStorage.getItem("user")).mail
+        document.title = localStorage.getItem("email")
     }
     /////////// fin 
 

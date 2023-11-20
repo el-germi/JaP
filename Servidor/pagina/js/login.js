@@ -1,30 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("login").addEventListener("click", e => {
-        //e.preventDefault();
+    document.getElementById("login").addEventListener("click", async () => {
 
-        const mail = document.getElementById("inputEmail").value;
-        const pass = document.getElementById("inputPassword").value;
-        const rember = document.getElementById("inputCheck").checked;
+        const email = document.getElementById("inputEmail").value;
+        const password = document.getElementById("inputPassword").value;
 
-        const session = {
-            'mail': mail,
-            'pass': pass
-        };
+        try {
+            
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
 
-        if (mail.length > 0 && pass.length > 0) {
-            try {
-                localStorage.setItem("user", JSON.stringify(session));
-            } catch (e) {
+            if (response.ok) {
+
+                const data = await response.json();
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("email", email);
+                location.href = "./index.html"; 
+
+            } else {
+
+                const errorMensaje = await response.json();
+                Swal.fire("Error!", errorMensaje.error, "error");
+
             }
-            location.href = "./index.html";
-        } else {
-            Swal.fire("Error!", "Verifique email y contraseña\n(no pueden ser vacios)", "error");
+
+        } catch (error) {
+
+            console.error('Error:', error);
+            Swal.fire("Error!", "Ocurrió un error al querer iniciar sesión", "error");
+
         }
     });
 });
 
-//guardar email del usuario en localStorage
+//obtener email del usuario
 function guardarDato() {
-    const email = document.getElementById("inputEmail").value;
-    localStorage.setItem("email", email);
+    localStorage.getItem("email");
 }
