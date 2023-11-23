@@ -24,7 +24,8 @@ app.post('/login', (req, res) => {
     }
 });
 
-app.post('/addToCart', (req, res) => {
+//desafiate, el cuerpo deve ser un arreglo de productos con {id,name,count,unitCost,currency,image}
+app.post('/syncCart', (req, res) => {
     let cart = JSON.parse(fs.readFileSync("./emercado-api-main/user_cart/25801.json", 'utf8'));
     let items = cart['articles'];
     let out = [];
