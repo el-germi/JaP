@@ -24,6 +24,27 @@ app.post('/login', (req, res) => {
     }
 });
 
+function verificarToken(req, res, next) {
+    const token = req.headers['authorization'];
+
+    if (token) {
+        jwt.verify(token, 'secretkey', (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ error: 'Token inválido' });
+            } else {
+                req.user = decoded;
+                next();
+            }
+        });
+    } else {
+        res.status(401).json({ error: 'Token no proporcionado' });
+    }
+}
+
+app.post('/cart', verificarToken, (req, res) => {
+    res.status(200).json({ message: 'Acceso al carrito permitido' });
+});
+
 //desafiate, el cuerpo deve ser un arreglo de productos con {id,name,count,unitCost,currency,image}
 app.post('/syncCart', (req, res) => {
     let cart = JSON.parse(fs.readFileSync("./emercado-api-main/user_cart/25801.json", 'utf8'));
